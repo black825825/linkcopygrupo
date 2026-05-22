@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>Grupo no Telegram</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      min-height: 100%;
+      background: linear-gradient(160deg, #e8f4fd 0%, #f5f9ff 50%, #eaf2fb 100%);
+      font-family: 'Inter', sans-serif;
+      color: #1a2a3a;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 16px 18px;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 16px 18px 18px;
+      width: 100%;
+      max-width: 390px;
+      box-shadow:
+        0 2px 8px rgba(42,171,238,0.06),
+        0 12px 48px rgba(42,171,238,0.13);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 11px;
+      animation: pop 0.55s cubic-bezier(0.34,1.56,0.64,1) both;
+    }
+
+    @keyframes pop {
+      from { opacity: 0; transform: scale(0.9) translateY(24px); }
+      to   { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    /* ── PERFIL ── */
+    .avatar-wrap {
+      position: relative;
+      width: 62px; height: 62px;
+    }
+    .avatar {
+      width: 62px; height: 62px; border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #2AABEE;
+      box-shadow: 0 4px 16px rgba(42,171,238,0.38);
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(-4px); }
+    }
+    .tg-badge {
+      position: absolute; bottom: 2px; right: 2px;
+      width: 24px; height: 24px; border-radius: 50%;
+      background: linear-gradient(135deg, #2AABEE, #1a85c2);
+      display: flex; align-items: center; justify-content: center;
+      border: 2.5px solid #fff;
+      box-shadow: 0 2px 8px rgba(42,171,238,0.4);
+    }
+    .tg-badge svg { width: 12px; height: 12px; fill: #fff; }
+
+    .group-name {
+      font-size: 17px; font-weight: 900;
+      color: #0f2033; text-align: center;
+      line-height: 1.2; letter-spacing: -0.3px;
+    }
+
+    .badges {
+      display: flex; gap: 7px; justify-content: center;
+    }
+    .badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      border-radius: 100px; padding: 4px 11px;
+      font-size: 11px; font-weight: 700;
+    }
+    .badge-live { background: #fff0f3; border: 1px solid #ffc8d2; color: #e8163a; }
+    .badge-free { background: #f0fdf4; border: 1px solid #bbf7d0; color: #16a34a; }
+    .badge-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      animation: blink 1.2s ease infinite;
+    }
+    .badge-live .badge-dot { background: #e8163a; }
+    .badge-free .badge-dot { background: #16a34a; }
+    @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.15; } }
+
+    .divider { width: 100%; height: 1px; background: linear-gradient(90deg, transparent, #e0eaf5, transparent); }
+
+    /* ── DEPOIMENTO ── */
+    .proof-wrap {
+      width: 60%;
+      border-radius: 16px; overflow: hidden;
+      box-shadow: 0 4px 18px rgba(42,171,238,0.13);
+    }
+    .proof-wrap img {
+      width: 100%; display: block;
+      object-fit: contain;
+    }
+
+    /* ── CTA ── */
+    .btn-cta {
+      width: 100%; padding: 16px;
+      border: none; border-radius: 18px;
+      background: linear-gradient(135deg, #2AABEE 0%, #1a85c2 100%);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 17px; font-weight: 900;
+      cursor: pointer; text-decoration: none;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      transition: transform 0.15s;
+      letter-spacing: -0.3px;
+      animation: pulseBtn 2.5s ease-in-out infinite;
+    }
+    @keyframes pulseBtn {
+      0%,100% { box-shadow: 0 6px 28px rgba(42,171,238,0.48); }
+      50%      { box-shadow: 0 12px 44px rgba(42,171,238,0.72); }
+    }
+    .btn-cta:active { transform: scale(0.97); }
+    .btn-cta svg { width: 20px; height: 20px; fill: #fff; flex-shrink: 0; }
+
+    .cta-note {
+      font-size: 11.5px; color: #a0bcd4; font-weight: 500;
+      display: flex; align-items: center; justify-content: center; gap: 5px;
+    }
+    .cta-note svg { width: 12px; height: 12px; stroke: #2AABEE; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  </style>
+</head>
+<body>
+
+<div class="page">
+  <div class="card">
+
+    <!-- Perfil -->
+    <div class="avatar-wrap">
+      <img class="avatar"
+        src="https://i.pinimg.com/736x/a6/6f/a4/a66fa4d8c5e48ac66ebc867b3d95af87.jpg"
+        alt="Foto de perfil" />
+      <div class="tg-badge">
+        <svg viewBox="0 0 24 24"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
+      </div>
+    </div>
+
+    <h1 class="group-name">Grupo no Telegram</h1>
+
+    <div class="badges">
+      <div class="badge badge-live"><span class="badge-dot"></span> Últimas Vagas</div>
+      <div class="badge badge-free"><span class="badge-dot"></span> Gratuito</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Depoimento -->
+    <div class="proof-wrap">
+      <img src="https://i.imgur.com/ycpfj0w.jpeg" alt="Depoimento" loading="lazy" />
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Botão -->
+    <a class="btn-cta" href="https://toqueaqui.vercel.app/grupo">
+      <svg viewBox="0 0 24 24"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
+      Começar Agora
+    </a>
+
+    <div class="cta-note">
+      <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Grupo gratuito no Telegram
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
